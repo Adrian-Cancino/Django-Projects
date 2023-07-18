@@ -1,0 +1,30 @@
+<!--<div>
+    <span>
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}">Anterior</a>
+        {% endif%}
+
+        <span>
+            Pagina {{ page.number }} of {{ page.paginator.num_pages }}
+        </span>
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">Siguiente</a>
+        {% endif %}
+    </span>
+</div>-->
+
+<nav class="pagination mt-3" role="navigation" aria-label="pagiantion">
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}" class="pagination-previous">Anterior</a>
+    {% endif%}
+
+    <span>
+        Pagina {{ page.number }} of {{ page.paginator.num_pages }}
+    </span>
+
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}" class="pagination-next">Siguiente</a>
+    {% endif %}
+    
+    
+</nav>

@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+  <h1 class="is-size-2">{{ post.title }}</h1>
+  <p class="date pb-2 has-text-weight-light is-italic">
+    Published {{ post.publish }} by {{ post.author }}
+  </p>
+  
+  {{ post.body|linebreaks }}
+
+  {% with comments.count as total_comments %}
+    <h2 class="is-size-6 mt-5">
+      {{ total_comments }} comment{{ total_comments|pluralize }}
+    </h2>
+  {% endwith %}
+
+  {% for comment in comments %}
+    <div class="message">
+      <div class="message-body">
+        Comment {{ forloop.counter }} by {{ comment.name }}
+        {{ comment.created }}
+        {{ comment.body|linebreaks }}
+      </div>
+      
+    </div>
+  {% empty %}
+    <p>There are no comments.</p>
+  {% endfor %}
+
+  {% include "blog/post/includes/comment_form.html" %}
+
+{% endblock %}
